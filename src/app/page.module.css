@@ -1,0 +1,65 @@
+/* page.module.css  ── modern glass‑gradient makeover */
+
+/* ───────────────── global scope ───────────────── */
+:global(:root) {
+  --accent‑1:#7f5af0;
+  --accent‑2:#2cb67d;
+  --bg:#fdfdfd;
+  --text‑primary:#1f2329;
+  --text‑secondary:#5f6368;
+  --card‑bg:rgba(255,255,255,.75);
+  --shadow:0 6px 24px rgba(0,0,0,.08);
+}
+:global(html),
+:global(body) {
+  background:var(--bg);
+  color:var(--text‑primary);
+}
+
+/* dark‑mode overrides */
+@media (prefers-color-scheme: dark) {
+  :global(:root) {
+    --bg:#111315;
+    --text‑primary:#eceff4;
+    --text‑secondary:#9fa6ad;
+    --card‑bg:rgba(20,22,24,.55);
+    --shadow:0 8px 32px rgba(0,0,0,.35);
+  }
+}
+
+/* ───────────────── layout ───────────────── */
+.main{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:3rem;padding:3.5rem 2rem;max-width:1400px;margin-inline:auto}
+.container{display:flex;flex-direction:column;gap:1.25rem}
+
+/* ───────────────── typography ───────────── */
+.title{font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;line-height:1.1;background:linear-gradient(135deg,var(--accent‑1),var(--accent‑2));-webkit-background-clip:text;color:transparent;margin-bottom:.5rem}
+.description{font-size:1rem;line-height:1.6;color:var(--text‑secondary)}
+
+/* ───────────────── buttons ──────────────── */
+.button,.button2{--bg-btn:var(--accent‑1);--fg-btn:#fff;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.35rem;font-size:.95rem;font-weight:600;padding:.9rem 1.75rem;border:none;border-radius:1rem;cursor:pointer;transition:transform .18s cubic-bezier(.4,0,.2,1),box-shadow .18s;box-shadow:var(--shadow);background:var(--bg-btn);color:var(--fg-btn);backdrop-filter:saturate(180%) blur(3px)}
+.button2{--bg-btn:transparent;--fg-btn:var(--accent‑1);border:2px solid var(--accent‑1)}
+.button:hover,.button2:hover{transform:translateY(-4px) scale(1.03)}
+.button:disabled,.button2:disabled{opacity:.5;transform:none;cursor:default;box-shadow:none}
+
+/* ───────────────── utilities ───────────── */
+.flex{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.5rem}
+
+/* ───────────────── card ─────────────────── */
+.card{position:relative;padding:2rem;border-radius:1.5rem;background:var(--card‑bg);border:1px solid rgba(255,255,255,.25);box-shadow:var(--shadow);backdrop-filter:saturate(180%) blur(9px);transition:transform .22s cubic-bezier(.4,0,.2,1),box-shadow .22s}
+.card:hover{transform:translateY(-6px);box-shadow:0 10px 40px rgba(0,0,0,.12)}
+.card p{margin:.45rem 0;font-size:.95rem;color:var(--text‑primary)}
+
+/* ───────────────── image ───────────────── */
+.image{width:100%;max-width:460px;aspect-ratio:3/2;border-radius:1.5rem;object-fit:cover;box-shadow:var(--shadow)}
+
+/* ───────────────── input field ──────────── */
+:global(input[type="number"]){appearance:textfield;width:100%;max-width:12rem;padding:.8rem 1rem;border-radius:1rem;border:1px solid rgba(0,0,0,.1);background:rgba(255,255,255,.6);color:var(--text‑primary);font-size:.95rem;transition:border-color .15s ease}
+@media (prefers-color-scheme: dark){
+  :global(input[type="number"]){background:rgba(32,34,37,.6);border:1px solid rgba(255,255,255,.12)}
+}
+:global(input[type="number"]:focus){outline:none;border-color:var(--accent‑1)}
+
+/* ───────────────── responsive ───────────── */
+@media (max-width:600px){
+  .main{padding:2.5rem 1.25rem}
+}
